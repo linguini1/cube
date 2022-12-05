@@ -45,9 +45,14 @@ Cube *make_cube(float side_length) {
 
         int *bin = to_binary(i);
 
-        cube->vertices[i] = (Vec3D) {(float)bin[0] * side_length,
-                                     (float)bin[1] * side_length,
-                                     (float)bin[2] * side_length};
+        // 0.5 so that cube is one unit side lengths centered at origin
+        // Base coordinates is -, +, -
+        // For each bit in binary representation of index, 1 flips the sign, 0 sign stays the same
+        // -2b + 1 = 1 when b is 0, -1 when b is 1
+
+        cube->vertices[i] = (Vec3D) {(float)(bin[0] * -2 + 1) * -0.5f * side_length,
+                                     (float)(bin[1] * -2 + 1) * 0.5f * side_length,
+                                     (float)(bin[2] * -2 + 1) * -0.5f * side_length};
     }
 
     return cube;
@@ -119,15 +124,19 @@ Cube *rotate_cube(Cube const *cube, float angle, int axis) {
 
 void draw_cube(SDL_Renderer *renderer, Cube const *cube){
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 4; i++) {
+
+        int j = 2 * i + ((i - 1) * (i - 2)) / 2; // Map i to the correct vertex number, j
+
         // Convert index to binary
-        int *bin = to_binary(i);
-        Vec3D home = cube->vertices[i];
+        int *bin = to_binary(j);
+        Vec3D home = cube->vertices[j];
 
         // Draw a line between each vertex and its three neighbours
-        for (int j = 0; j < 3; j++) {
-            bin[j] = !bin[j]; // Flip bit
-            int index = to_decimal(bin);
+        for (int k = 0; k < 3; k++) {
+
+            bin[k] = !bin[k]; // Flip bit
+            int index = to_decimal(bin); // Get neighbour index
 
             Vec3D next = cube->vertices[index];
             SDL_RenderDrawLineF(
@@ -136,7 +145,7 @@ void draw_cube(SDL_Renderer *renderer, Cube const *cube){
                     next.x, next.y
             );
 
-            bin[j] = !bin[j]; // Flip bit back
+            bin[k] = !bin[k]; // Flip bit back
         }
     }
 }

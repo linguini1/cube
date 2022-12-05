@@ -44,19 +44,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2022.2.2\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2022.2.2\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\coding\C\cube
+CMAKE_SOURCE_DIR = C:\root\coding\C\cube
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\coding\C\cube\cmake-build-debug
+CMAKE_BINARY_DIR = C:\root\coding\C\cube\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -80,14 +80,14 @@ clean: CMakeFiles/cube.dir/clean
 CMakeFiles/cube.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target cube"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target cube"
 .PHONY : CMakeFiles/cube.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cube.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\coding\C\cube\cmake-build-debug\CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\root\coding\C\cube\cmake-build-debug\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/cube.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\coding\C\cube\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\root\coding\C\cube\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/cube.dir/rule
 
 # Convenience name for target.

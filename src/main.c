@@ -41,7 +41,7 @@ int main(int argc, char **argv) {
     bool running = true;
     SDL_Event event;
 
-    // Initialize assets
+    // Initialize docs
     Cube *cube = make_cube(150);
     float angle = 0;
 
@@ -64,7 +64,6 @@ int main(int argc, char **argv) {
         // Overwrite cube with rotated cube
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
-
 
         translate_cube(rotated_cube, &origin); // Translate to center of screen
 
