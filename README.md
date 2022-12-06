@@ -209,3 +209,6 @@ colour->g = (int) (255 * g);
 colour->b = (int) (255 * b);
 ```
 
+In the end, I chose to take the absolute value of the sine
+wave output, because it allowed a larger range of colour to 
+be displayed.

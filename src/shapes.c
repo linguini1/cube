@@ -156,22 +156,9 @@ void colour_transition(RGB *colour, float angle) {
     float g = sinf(angle + 2.0f * PI / 3.0f);
     float b = sinf(angle + + 4.0f * PI / 3.0f);
 
-    // Flatten negative values to 0
-    if (r < 0) {
-        r = 0;
-    }
-
-    if (g < 0) {
-        g = 0;
-    }
-
-    if (b < 0) {
-        b = 0;
-    }
-
     // Changing RGB struct
-    colour->r = (int) (255 * r);
-    colour->g = (int) (255 * g);
-    colour->b = (int) (255 * b);
+    colour->r = (int) fabs((255 * r));
+    colour->g = (int) fabs((255 * g));
+    colour->b = (int) fabs((255 * b));
 
 }

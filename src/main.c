@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
             angle = 0;
         }
 
-        colour_transition(&stroke, angle * 5.0f); // Gives rainbow effect
+        colour_transition(&stroke, angle * 1.0f); // Gives rainbow effect
 
         // Overwrite cube with rotated cube
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
