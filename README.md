@@ -1,5 +1,6 @@
 <img alt="Spinning Cube" src="./docs/cube.gif" align="left" width="100" style="padding: 20px" />
 <h1>Spinning Cube</h1>
+
 <h3>Matteo Golin</h3>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
