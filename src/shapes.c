@@ -3,7 +3,6 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>
-#include <stdio.h>
 
 int *to_binary(int num) {
     assert(0 <= num & num < 8); // Only works for 3-bit
@@ -148,4 +147,31 @@ void draw_cube(SDL_Renderer *renderer, Cube const *cube){
             bin[k] = !bin[k]; // Flip bit back
         }
     }
+}
+
+void colour_transition(RGB *colour, float angle) {
+
+    // All colours are 1/3 out of phase
+    float r = sinf(angle);
+    float g = sinf(angle + 2.0f * PI / 3.0f);
+    float b = sinf(angle + + 4.0f * PI / 3.0f);
+
+    // Flatten negative values to 0
+    if (r < 0) {
+        r = 0;
+    }
+
+    if (g < 0) {
+        g = 0;
+    }
+
+    if (b < 0) {
+        b = 0;
+    }
+
+    // Changing RGB struct
+    colour->r = (int) (255 * r);
+    colour->g = (int) (255 * g);
+    colour->b = (int) (255 * b);
+
 }

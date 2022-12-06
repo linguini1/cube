@@ -352,11 +352,7 @@ CMakeFiles/cube.dir/src/shapes.c.obj: ../src/shapes.c \
   C:/MinGW/include/SDL2/include/SDL_locale.h \
   C:/MinGW/include/SDL2/include/SDL_misc.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/assert.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/math.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
-  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/math.h
 
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/popcntintrin.h:

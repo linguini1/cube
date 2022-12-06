@@ -7,7 +7,10 @@
 static const int width = 800;
 static const int height = 800;
 static char window_name[] = "Geometry Visualizer";
-static Vec3D origin = {(float)width / 2, (float)height / 2, 0};
+static const float scale = 3.0f;
+
+// Origin
+static Vec3D origin = {(float) width / (2.0f * scale), (float) height / (2.0f * scale), 0};
 
 int main(int argc, char **argv) {
 
@@ -37,13 +40,15 @@ int main(int argc, char **argv) {
         -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC // Accelerated and in sync with monitor refresh rate
     );
+    SDL_RenderSetScale(renderer, scale, scale);
 
     bool running = true;
     SDL_Event event;
 
-    // Initialize docs
-    Cube *cube = make_cube(150);
+    // Initialize assets
+    Cube *cube = make_cube(80);
     float angle = 0;
+    RGB stroke = {255, 255, 255}; // Start as white
 
     while (running) {
 
@@ -58,8 +63,15 @@ int main(int argc, char **argv) {
         SDL_RenderClear(renderer);
 
         // Draw
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // White stroke
-        angle += 0.01f;
+        SDL_SetRenderDrawColor(renderer, stroke.r, stroke.g, stroke.b, 255); // Variable stroke
+        angle += 0.012f;
+
+        // Reset angle every period
+        if (2 * PI - 0.025f < angle & angle > 2 * PI + 0.025f) {
+            angle = 0;
+        }
+
+        colour_transition(&stroke, angle * 5.0f); // Gives rainbow effect
 
         // Overwrite cube with rotated cube
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis

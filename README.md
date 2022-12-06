@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
-This repository simply contains a spinning cube written entirely in C.
+This repository simply contains a spinning, rainbow cube written entirely in C.
 
 Currently, the cube is projected orthogonally, as I have not implemented a project besides ignoring the Z
 values of the cube.
@@ -169,3 +169,40 @@ for (int i = 0; i < 4; i++) {
     }
 }
 ```
+
+### Colour Shift
+
+In order to have the cube switch colour, I defined three sine waves for the RGB values of the stroke. These values are 
+out of sync by 1/3rd period each. Visualized with [Desmos](https://www.desmos.com/calculator/yq9tvhlqnw), the colours
+look like this:
+
+![Colour Shift](docs/colour_shift.png)
+
+Of course, RGB values are positive integers, so I had to round the values and also flatten all negatives to 0. 
+In code, the wave calculations look like this:
+
+```C
+// All colours are 1/3 out of phase
+float r = sinf(angle);
+float g = sinf(angle + 2.0f * PI / 3.0f);
+float b = sinf(angle + + 4.0f * PI / 3.0f);
+
+// Flatten negative values to 0
+if (r < 0) {
+    r = 0;
+}
+
+if (g < 0) {
+    g = 0;
+}
+
+if (b < 0) {
+    b = 0;
+}
+
+// Changing RGB struct
+colour->r = (int) (255 * r);
+colour->g = (int) (255 * g);
+colour->b = (int) (255 * b);
+```
+
