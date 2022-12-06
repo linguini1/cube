@@ -1,4 +1,4 @@
-<img alt="Spinning Cube" src="./docs/cube.gif" align="left" width="60" />
+<img alt="Spinning Cube" src="./docs/cube.gif" align="left" width="75" />
 <h1>&nbsp Spinning Cube</h1>
 <h3>Matteo Golin</h3>
 
