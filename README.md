@@ -1,8 +1,5 @@
-<div style="align-items: center; display: flex;">
 <img alt="Spinning Cube" src="./docs/cube.gif" width="100" style="border-radius: 30px; padding: 10px; float: left;" />
 <h1>Spinning Cube</h1>
-</div>
-<br/>
 <h3>Matteo Golin</h3>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
