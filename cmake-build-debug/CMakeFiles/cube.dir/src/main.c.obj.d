@@ -11,7 +11,6 @@ CMakeFiles/cube.dir/src/main.c.obj: C:\root\coding\C\cube\src\main.c \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdbool.h \
- C:/root/coding/C/cube/include/shapes.h \
  C:/MinGW/include/SDL2/include/SDL.h \
  C:/MinGW/include/SDL2/include/SDL_main.h \
  C:/MinGW/include/SDL2/include/SDL_stdinc.h \
@@ -174,4 +173,6 @@ CMakeFiles/cube.dir/src/main.c.obj: C:\root\coding\C\cube\src\main.c \
  C:/MinGW/include/SDL2/include/SDL_timer.h \
  C:/MinGW/include/SDL2/include/SDL_version.h \
  C:/MinGW/include/SDL2/include/SDL_locale.h \
- C:/MinGW/include/SDL2/include/SDL_misc.h
+ C:/MinGW/include/SDL2/include/SDL_misc.h \
+ C:/root/coding/C/cube/include/shapes.h \
+ C:/root/coding/C/cube/include/vector.h

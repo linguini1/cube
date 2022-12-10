@@ -5,6 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 set(SDL2_INCLUDE_DIR C:\\MinGW\\include\\SDL2\\include)
 set(SDL2_LIB_DIR C:\\MinGW\\include\\SDL2\\lib\\x64)
+set(SOURCE_FILES ./src/*.c)
 
 include_directories(${SDL2_INCLUDE_DIR})
 include_directories(.\\include)

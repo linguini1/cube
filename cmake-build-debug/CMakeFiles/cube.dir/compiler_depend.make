@@ -14,7 +14,6 @@ CMakeFiles/cube.dir/src/main.c.obj: ../src/main.c \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdbool.h \
-  ../include/shapes.h \
   C:/MinGW/include/SDL2/include/SDL.h \
   C:/MinGW/include/SDL2/include/SDL_main.h \
   C:/MinGW/include/SDL2/include/SDL_stdinc.h \
@@ -177,7 +176,9 @@ CMakeFiles/cube.dir/src/main.c.obj: ../src/main.c \
   C:/MinGW/include/SDL2/include/SDL_timer.h \
   C:/MinGW/include/SDL2/include/SDL_version.h \
   C:/MinGW/include/SDL2/include/SDL_locale.h \
-  C:/MinGW/include/SDL2/include/SDL_misc.h
+  C:/MinGW/include/SDL2/include/SDL_misc.h \
+  ../include/shapes.h \
+  ../include/vector.h
 
 CMakeFiles/cube.dir/src/shapes.c.obj: ../src/shapes.c \
   ../include/shapes.h \
@@ -351,8 +352,34 @@ CMakeFiles/cube.dir/src/shapes.c.obj: ../src/shapes.c \
   C:/MinGW/include/SDL2/include/SDL_version.h \
   C:/MinGW/include/SDL2/include/SDL_locale.h \
   C:/MinGW/include/SDL2/include/SDL_misc.h \
+  ../include/vector.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/assert.h \
   C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/math.h
+
+CMakeFiles/cube.dir/src/vector.c.obj: ../src/vector.c \
+  ../include/vector.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/malloc.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/crtdefs.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_mac.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_secapi.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/mm_malloc.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/limits.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/syslimits.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/limits.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/errno.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/assert.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
+  C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h
 
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/popcntintrin.h:
@@ -377,15 +404,15 @@ C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/stdio.h:
 
+C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/cldemoteintrin.h:
+
 C:/MinGW/include/SDL2/include/SDL_render.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/ia32intrin.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/stdint.h:
-
-C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/cldemoteintrin.h:
-
-C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/x86_64-w64-mingw32/include/corecrt.h:
 
 C:/MinGW/include/SDL2/include/SDL_endian.h:
 
@@ -424,8 +451,6 @@ C:/MinGW/include/SDL2/include/SDL_error.h:
 C:/MinGW/include/SDL2/include/close_code.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/stdbool.h:
-
-../include/shapes.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/avx512dqintrin.h:
 
@@ -645,6 +670,8 @@ C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/vpclmulqdqintrin.h:
 
+../src/vector.c:
+
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/avx512bf16intrin.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2022.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/amxtileintrin.h:
@@ -708,6 +735,10 @@ C:/MinGW/include/SDL2/include/SDL_version.h:
 C:/MinGW/include/SDL2/include/SDL_locale.h:
 
 C:/MinGW/include/SDL2/include/SDL_misc.h:
+
+../include/shapes.h:
+
+../include/vector.h:
 
 ../src/shapes.c:
 

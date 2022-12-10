@@ -88,6 +88,9 @@
 		<Unit filename="C:/root/coding/C/cube/src/shapes.c">
 			<Option target="cube"/>
 		</Unit>
+		<Unit filename="C:/root/coding/C/cube/src/vector.c">
+			<Option target="cube"/>
+		</Unit>
 		<Unit filename="C:/root/coding/C/cube/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

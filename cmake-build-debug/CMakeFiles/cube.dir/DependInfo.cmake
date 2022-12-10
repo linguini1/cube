@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/root/coding/C/cube/src/main.c" "CMakeFiles/cube.dir/src/main.c.obj" "gcc" "CMakeFiles/cube.dir/src/main.c.obj.d"
   "C:/root/coding/C/cube/src/shapes.c" "CMakeFiles/cube.dir/src/shapes.c.obj" "gcc" "CMakeFiles/cube.dir/src/shapes.c.obj.d"
+  "C:/root/coding/C/cube/src/vector.c" "CMakeFiles/cube.dir/src/vector.c.obj" "gcc" "CMakeFiles/cube.dir/src/vector.c.obj.d"
   )
 
 # Targets to which this target links.

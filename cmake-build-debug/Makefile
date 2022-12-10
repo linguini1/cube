@@ -176,6 +176,30 @@ src/shapes.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/shapes.c.s
 .PHONY : src/shapes.c.s
 
+src/vector.obj: src/vector.c.obj
+.PHONY : src/vector.obj
+
+# target to build an object file
+src/vector.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/vector.c.obj
+.PHONY : src/vector.c.obj
+
+src/vector.i: src/vector.c.i
+.PHONY : src/vector.i
+
+# target to preprocess a source file
+src/vector.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/vector.c.i
+.PHONY : src/vector.c.i
+
+src/vector.s: src/vector.c.s
+.PHONY : src/vector.s
+
+# target to generate assembly for a file
+src/vector.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/vector.c.s
+.PHONY : src/vector.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -191,6 +215,9 @@ help:
 	@echo ... src/shapes.obj
 	@echo ... src/shapes.i
 	@echo ... src/shapes.s
+	@echo ... src/vector.obj
+	@echo ... src/vector.i
+	@echo ... src/vector.s
 .PHONY : help
 
 

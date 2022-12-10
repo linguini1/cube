@@ -1,16 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include <shapes.h>
 #include <SDL.h>
+#include "shapes.h"
 
 // Window parameters
-static const int width = 800;
-static const int height = 800;
-static char window_name[] = "Geometry Visualizer";
-static const float scale = 3.0f;
-
-// Origin
-static Vec3D origin = {(float) width / (2.0f * scale), (float) height / (2.0f * scale), 0};
+const int width = 800;
+const int height = 800;
+const char window_name[] = "Geometry Visualizer";
+const float scale = 3.0f;
 
 int main(int argc, char **argv) {
 
@@ -45,10 +42,17 @@ int main(int argc, char **argv) {
     bool running = true;
     SDL_Event event;
 
+    // Origin
+    Vec3D *origin = make_vector(
+        (float) width / (2.0f * scale),
+        (float) height / (2.0f * scale),
+        0.0f
+    );
+
     // Initialize assets
     Cube *cube = make_cube(80);
-    float angle = 0;
     RGB stroke = {255, 255, 255}; // Start as white
+    float angle = 0;
 
     while (running) {
 
@@ -77,7 +81,7 @@ int main(int argc, char **argv) {
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
 
-        translate_cube(rotated_cube, &origin); // Translate to center of screen
+        translate_cube(rotated_cube, origin); // Translate to center of screen
 
         draw_cube(renderer, rotated_cube);
 
