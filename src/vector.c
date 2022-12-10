@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 // Vectors
 Vec3D *make_vector(float x, float y, float z) {
@@ -27,8 +28,7 @@ Vec3D *rotate_vector(Vec3D const *vector, float angle, int axis){
     assert(0 < axis & axis < 4); // 1-3 are valid (x, y, z) respectively
 
     // Create new vector
-    Vec3D *new_vec = malloc(sizeof(Vec3D));
-    assert(new_vec != NULL);
+    Vec3D *new_vec = make_vector(0.0f, 0.0f, 0.0f);
 
     // X axis
     if (axis == 1) {
@@ -55,11 +55,63 @@ Vec3D *rotate_vector(Vec3D const *vector, float angle, int axis){
 }
 
 void print_vector(Vec3D const *vector) {
-    printf("(%f, %f, %f, %f)", vector->x, vector->y, vector->z, vector->w);
-}
-
-void *translate_vector(Vec3D const *vector, Vec3D const *translation) {
-    1 + 1;
+    printf("(%f, %f, %f, %f)\n", vector->x, vector->y, vector->z, vector->w);
 }
 
 // Matrices
+Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
+
+    // Allocate matrix
+    Matrix *trans_matrix = malloc(sizeof(Matrix));
+    assert(trans_matrix != NULL);
+
+    // Populate diagonals with 1s (multiplied by the scale), rest with 0s
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j ++) {
+
+            trans_matrix->cells[i][j] = 0;
+
+            if (i == j) {
+                trans_matrix->cells[i][j] = scale;
+            }
+        }
+    }
+    trans_matrix->cells[0][3] = translation->x;
+    trans_matrix->cells[1][3] = translation->y;
+    trans_matrix->cells[2][3] = translation->z;
+
+    return trans_matrix;
+}
+
+void *matrix_multiplication(Vec3D *vector, Matrix const *matrix) {
+
+    // Unpack vector into array for looping
+    float *vector_fields[4] = {
+        &(vector->x),
+        &(vector->y),
+        &(vector->z),
+        &(vector->w)
+    };
+    float sums[4] = {0.0f};
+
+    // Multiply
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            sums[i] += matrix->cells[i][j] * (*vector_fields[j]);
+        }
+    }
+
+    // Populate vector with new vector
+    for (int i = 0; i < 4; i++) {
+        *vector_fields[i] = sums[i];
+    }
+}
+
+void print_matrix(Matrix const *matrix) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++){
+            printf("%f, ", matrix->cells[i][j]);
+        }
+        printf("\n");
+    }
+}

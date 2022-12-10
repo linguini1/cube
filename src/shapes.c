@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdio.h>
 
 // Helpers
 int *to_binary(int num) {
@@ -42,9 +43,9 @@ void colour_transition(RGB *colour, float angle) {
     float b = sinf(angle + + 4.0f * PI / 3.0f);
 
     // Changing RGB struct
-    colour->r = (int) fabs((255 * r));
-    colour->g = (int) fabs((255 * g));
-    colour->b = (int) fabs((255 * b));
+    colour->r = (int) fabs((double) (255 * r));
+    colour->g = (int) fabs((double) (255 * g));
+    colour->b = (int) fabs((double) (255 * b));
 
 }
 
@@ -74,11 +75,11 @@ Cube *make_cube(float side_length) {
     return cube;
 }
 
-void translate_cube(Cube *cube, Vec3D *origin) {
+void translate_cube(Cube *cube, Matrix *matrix) {
+
     for (int i = 0; i < 8; i++){
-        cube->vertices[i].x += origin->x;
-        cube->vertices[i].y += origin->y;
-        cube->vertices[i].z += origin->z;
+        Vec3D *vertex = &(cube->vertices[i]);
+        matrix_multiplication(vertex, matrix);
     }
 }
 
@@ -123,5 +124,13 @@ void draw_cube(SDL_Renderer *renderer, Cube const *cube){
 
             bin[k] = !bin[k]; // Flip bit back
         }
+    }
+}
+
+void print_cube(Cube const *cube) {
+
+    for (int i = 0; i < 8; i++) {
+        printf("Vertex %d: ", i);
+        print_vector(&(cube->vertices[i]));
     }
 }

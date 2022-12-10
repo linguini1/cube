@@ -15,14 +15,14 @@ typedef struct rgb {
     unsigned int b;
 } RGB;
 
-// Functions
+// Helper functions
 int *to_binary(int num);
 int to_decimal(int const *binary);
-
-Cube *make_cube(float side_length);
-
-void translate_cube(Cube *cube, Vec3D *origin);
-Cube *rotate_cube(Cube const *cube, float angle, int axis);
-
-void draw_cube(SDL_Renderer *renderer, Cube const *cube);
 void colour_transition(RGB *colour, float angle);
+
+// Cube functions
+Cube *make_cube(float side_length);
+void translate_cube(Cube *cube, Matrix *matrix);
+Cube *rotate_cube(Cube const *cube, float angle, int axis);
+void draw_cube(SDL_Renderer *renderer, Cube const *cube);
+void print_cube(Cube const *cube);

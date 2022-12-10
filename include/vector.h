@@ -12,11 +12,12 @@ typedef struct matrix {
     float cells[4][4];
 } Matrix;
 
-// Functions
+// Vectors
 Vec3D *make_vector(float x, float y, float z);
-
 Vec3D *rotate_vector(Vec3D const *vector, float angle, int axis);
-
-void *translate_vector(Vec3D const *vector, Vec3D const *translation);
-
 void print_vector(Vec3D const *vector);
+
+// Matrices
+Matrix *make_translation_matrix(Vec3D const *translation, float scale);
+void *matrix_multiplication(Vec3D *vector, Matrix const *matrix);
+void print_matrix(Matrix const *matrix);

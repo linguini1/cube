@@ -48,6 +48,7 @@ int main(int argc, char **argv) {
         (float) height / (2.0f * scale),
         0.0f
     );
+    Matrix *origin_trans = make_translation_matrix(origin, 1);
 
     // Initialize assets
     Cube *cube = make_cube(80);
@@ -81,7 +82,7 @@ int main(int argc, char **argv) {
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
 
-        translate_cube(rotated_cube, origin); // Translate to center of screen
+        translate_cube(rotated_cube, origin_trans); // Translate to center of screen
 
         draw_cube(renderer, rotated_cube);
 
