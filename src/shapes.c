@@ -75,7 +75,7 @@ Cube *make_cube(float side_length) {
     return cube;
 }
 
-void translate_cube(Cube *cube, Matrix *matrix) {
+void translate_cube(Cube *cube, Matrix const *matrix) {
 
     for (int i = 0; i < 8; i++){
         Vec3D *vertex = &(cube->vertices[i]);
@@ -97,6 +97,22 @@ Cube *rotate_cube(Cube const *cube, float angle, int axis) {
     }
 
     return new_cube;
+}
+
+void project_cube(Cube *cube, Matrix const *matrix) {
+
+    for (int i = 0; i < 8; i++){
+
+        Vec3D *vertex = &(cube->vertices[i]);
+        matrix_multiplication(vertex, matrix);
+
+        if (vertex->w != 0.0f) {
+            vertex->x /= vertex->w;
+            vertex->y /= vertex->w;
+            vertex->z /= vertex->w;
+        }
+    }
+
 }
 
 void draw_cube(SDL_Renderer *renderer, Cube const *cube){

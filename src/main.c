@@ -6,6 +6,8 @@
 // Window parameters
 const int width = 800;
 const int height = 800;
+const float fov = 0.1245f;
+const float aspect_ratio = (float) height / (float) width;
 const char window_name[] = "Geometry Visualizer";
 const float scale = 3.0f;
 
@@ -51,9 +53,13 @@ int main(int argc, char **argv) {
     Matrix *origin_trans = make_translation_matrix(origin, 1);
 
     // Initialize assets
-    Cube *cube = make_cube(80);
+    float side_length = 100.0f;
+    Cube *cube = make_cube(side_length);
     RGB stroke = {255, 255, 255}; // Start as white
     float angle = 0;
+
+    // Projection
+    Matrix *proj = make_projection_matrix(fov, aspect_ratio, 50.0f, 100.0f);
 
     while (running) {
 
@@ -82,7 +88,11 @@ int main(int argc, char **argv) {
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
 
-        translate_cube(rotated_cube, origin_trans); // Translate to center of screen
+        // Translate to center of screen
+        translate_cube(rotated_cube, origin_trans);
+
+        // Project
+//        project_cube(rotated_cube, proj);
 
         draw_cube(renderer, rotated_cube);
 

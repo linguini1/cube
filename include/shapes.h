@@ -22,7 +22,8 @@ void colour_transition(RGB *colour, float angle);
 
 // Cube functions
 Cube *make_cube(float side_length);
-void translate_cube(Cube *cube, Matrix *matrix);
+void translate_cube(Cube *cube, Matrix const *matrix);
 Cube *rotate_cube(Cube const *cube, float angle, int axis);
+void project_cube(Cube *cube, Matrix const *matrix);
 void draw_cube(SDL_Renderer *renderer, Cube const *cube);
 void print_cube(Cube const *cube);

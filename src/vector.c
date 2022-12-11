@@ -59,11 +59,15 @@ void print_vector(Vec3D const *vector) {
 }
 
 // Matrices
+Matrix *make_matrix() {
+    Matrix *matrix = malloc(sizeof(Matrix));
+    assert(matrix != NULL);
+    return matrix;
+}
+
 Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
 
-    // Allocate matrix
-    Matrix *trans_matrix = malloc(sizeof(Matrix));
-    assert(trans_matrix != NULL);
+    Matrix *trans_matrix = make_matrix();
 
     // Populate diagonals with 1s (multiplied by the scale), rest with 0s
     for (int i = 0; i < 4; i++) {
@@ -81,6 +85,30 @@ Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
     trans_matrix->cells[2][3] = translation->z;
 
     return trans_matrix;
+}
+
+Matrix *make_projection_matrix(float fov, float aspect, float z_near, float z_far) {
+
+    Matrix *proj_matrix = make_matrix();
+
+    // Populate with 0s
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            proj_matrix -> cells[i][j] = 0.0f;
+        }
+    }
+
+    // Projection parameters
+    float f = (float) (1.0f / tan((double) fov / 2.0f));
+    float lambda = z_far / (z_far - z_near);
+
+    proj_matrix->cells[0][0] = aspect * f;
+    proj_matrix->cells[1][1] = f;
+    proj_matrix->cells[2][2] = lambda;
+    proj_matrix->cells[2][3] = -lambda * z_near;
+    proj_matrix->cells[3][2] = 1.0f;
+
+    return proj_matrix;
 }
 
 void *matrix_multiplication(Vec3D *vector, Matrix const *matrix) {
