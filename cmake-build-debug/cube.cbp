@@ -5,7 +5,7 @@
 		<Option title="cube"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\MinGW\;CMake Files\..\..\..\..\MinGW\include\;CMake Files\..\..\..\..\MinGW\include\SDL2\;CMake Files\..\..\..\..\MinGW\include\SDL2\cmake\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="C:/root/coding/C/cube/cmake-build-debug"/>
@@ -93,6 +93,12 @@
 		</Unit>
 		<Unit filename="C:/root/coding/C/cube/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/root/coding/C/cube/../../../../MinGW/include/SDL2/cmake/sdl2-config-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\MinGW\include\SDL2\cmake\"/>
+		</Unit>
+		<Unit filename="C:/root/coding/C/cube/../../../../MinGW/include/SDL2/cmake/sdl2-config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\MinGW\include\SDL2\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.23"
+						"string" : "3.0"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "cube::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-cube-Debug-f8c1a0f19516c7b0c7c8.json",
+					"jsonFile" : "target-cube-Debug-ae2f7ffe8bb5708ec869.json",
 					"name" : "cube",
 					"projectIndex" : 0
 				}

@@ -99,13 +99,12 @@ Matrix *make_projection_matrix(float fov, float aspect, float z_near, float z_fa
     }
 
     // Projection parameters
-    float f = (float) (1.0f / tan((double) fov / 2.0f));
-    float lambda = z_far / (z_far - z_near);
+    float f = (float) (1.0f / tanf(fov));
 
-    proj_matrix->cells[0][0] = aspect * f;
+    proj_matrix->cells[0][0] = f / aspect;
     proj_matrix->cells[1][1] = f;
-    proj_matrix->cells[2][2] = lambda;
-    proj_matrix->cells[2][3] = -lambda * z_near;
+    proj_matrix->cells[2][2] = (z_far + z_near) / (z_near - z_far);
+    proj_matrix->cells[2][3] = (2.0f * z_far * z_near) / (z_near - z_far);
     proj_matrix->cells[3][2] = 1.0f;
 
     return proj_matrix;

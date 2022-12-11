@@ -6,7 +6,7 @@
 // Window parameters
 const int width = 800;
 const int height = 800;
-const float fov = 0.1245f;
+const float fov = 0.785f;
 const float aspect_ratio = (float) height / (float) width;
 const char window_name[] = "Geometry Visualizer";
 const float scale = 3.0f;
@@ -48,18 +48,19 @@ int main(int argc, char **argv) {
     Vec3D *origin = make_vector(
         (float) width / (2.0f * scale),
         (float) height / (2.0f * scale),
-        0.0f
+        50.0f
     );
     Matrix *origin_trans = make_translation_matrix(origin, 1);
 
     // Initialize assets
-    float side_length = 100.0f;
+    float side_length = 40.0f;
     Cube *cube = make_cube(side_length);
+
     RGB stroke = {255, 255, 255}; // Start as white
     float angle = 0;
 
     // Projection
-    Matrix *proj = make_projection_matrix(fov, aspect_ratio, 50.0f, 100.0f);
+    Matrix *proj = make_projection_matrix(fov, aspect_ratio, 0.0f, 100.0f);
 
     while (running) {
 
@@ -94,6 +95,7 @@ int main(int argc, char **argv) {
         // Project
 //        project_cube(rotated_cube, proj);
 
+        // Draw
         draw_cube(renderer, rotated_cube);
 
         // Show what was drawn

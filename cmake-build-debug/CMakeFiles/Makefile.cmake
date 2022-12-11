@@ -7,6 +7,8 @@ set(CMAKE_DEPENDS_GENERATOR "MinGW Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "C:/MinGW/include/SDL2/cmake/sdl2-config-version.cmake"
+  "C:/MinGW/include/SDL2/cmake/sdl2-config.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/CMakeCInformation.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
@@ -20,6 +22,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU-C.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Compiler/GNU.cmake"
+  "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/FeatureSummary.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C-ABI.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU-C.cmake"
   "C:/Program Files/JetBrains/CLion 2022.2.2/bin/cmake/win/share/cmake-3.23/Modules/Platform/Windows-GNU.cmake"
