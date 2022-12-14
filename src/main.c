@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <SDL.h>
 #include "shapes.h"
+#include "handlers.h"
 
 // Window parameters
 const int width = 800;
@@ -40,10 +41,12 @@ int main(int argc, char **argv) {
     SDL_RenderSetScale(renderer, scale, scale);
 
     bool running = true;
+    bool perspective = false;
     SDL_Event event;
 
     // Origin
-    float side_len = 60.0f;
+    float side_len = 50.0f;
+    float cam_distance = 2.0f;
     Vec3D *origin = make_vector(
         (float) width / 6,
         (float) height / 6,
@@ -61,6 +64,10 @@ int main(int argc, char **argv) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_QUIT) {
                 running = false;
+            } else if (event.type == SDL_MOUSEBUTTONDOWN) {
+                perspective = !perspective; // Change perspective on click
+            } else if (event.type == SDL_MOUSEWHEEL) {
+                change_cam_distance(&cam_distance, event.wheel.preciseY, 5.0f, 2.0f);
             }
         }
 
@@ -83,7 +90,9 @@ int main(int argc, char **argv) {
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
 
         // Project
-        project_cube(rotated_cube, 2.5f);
+        if (perspective) {
+            project_cube(rotated_cube, cam_distance);
+        }
 
         // Translate to center of screen
         translate_cube(rotated_cube, origin_trans);

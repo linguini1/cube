@@ -128,6 +128,30 @@ cube/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/build
 .PHONY : cube/fast
 
+src/handlers.obj: src/handlers.c.obj
+.PHONY : src/handlers.obj
+
+# target to build an object file
+src/handlers.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/handlers.c.obj
+.PHONY : src/handlers.c.obj
+
+src/handlers.i: src/handlers.c.i
+.PHONY : src/handlers.i
+
+# target to preprocess a source file
+src/handlers.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/handlers.c.i
+.PHONY : src/handlers.c.i
+
+src/handlers.s: src/handlers.c.s
+.PHONY : src/handlers.s
+
+# target to generate assembly for a file
+src/handlers.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\cube.dir\build.make CMakeFiles/cube.dir/src/handlers.c.s
+.PHONY : src/handlers.c.s
+
 src/main.obj: src/main.c.obj
 .PHONY : src/main.obj
 
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... cube
+	@echo ... src/handlers.obj
+	@echo ... src/handlers.i
+	@echo ... src/handlers.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

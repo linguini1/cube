@@ -175,4 +175,5 @@ CMakeFiles/cube.dir/src/main.c.obj: C:\root\coding\C\cube\src\main.c \
  C:/MinGW/include/SDL2/include/SDL_locale.h \
  C:/MinGW/include/SDL2/include/SDL_misc.h \
  C:/root/coding/C/cube/include/shapes.h \
- C:/root/coding/C/cube/include/vector.h
+ C:/root/coding/C/cube/include/vector.h \
+ C:/root/coding/C/cube/include/handlers.h

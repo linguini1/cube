@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/root/coding/C/cube/src/handlers.c">
+			<Option target="cube"/>
+		</Unit>
 		<Unit filename="C:/root/coding/C/cube/src/main.c">
 			<Option target="cube"/>
 		</Unit>

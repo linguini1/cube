@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/cube.dir/src/handlers.c.obj"
+  "CMakeFiles/cube.dir/src/handlers.c.obj.d"
   "CMakeFiles/cube.dir/src/main.c.obj"
   "CMakeFiles/cube.dir/src/main.c.obj.d"
   "CMakeFiles/cube.dir/src/shapes.c.obj"

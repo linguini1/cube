@@ -68,11 +68,26 @@ include CMakeFiles/cube.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cube.dir/flags.make
 
+CMakeFiles/cube.dir/src/handlers.c.obj: CMakeFiles/cube.dir/flags.make
+CMakeFiles/cube.dir/src/handlers.c.obj: CMakeFiles/cube.dir/includes_C.rsp
+CMakeFiles/cube.dir/src/handlers.c.obj: ../src/handlers.c
+CMakeFiles/cube.dir/src/handlers.c.obj: CMakeFiles/cube.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cube.dir/src/handlers.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cube.dir/src/handlers.c.obj -MF CMakeFiles\cube.dir\src\handlers.c.obj.d -o CMakeFiles\cube.dir\src\handlers.c.obj -c C:\root\coding\C\cube\src\handlers.c
+
+CMakeFiles/cube.dir/src/handlers.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/cube.dir/src/handlers.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\root\coding\C\cube\src\handlers.c > CMakeFiles\cube.dir\src\handlers.c.i
+
+CMakeFiles/cube.dir/src/handlers.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/cube.dir/src/handlers.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\root\coding\C\cube\src\handlers.c -o CMakeFiles\cube.dir\src\handlers.c.s
+
 CMakeFiles/cube.dir/src/main.c.obj: CMakeFiles/cube.dir/flags.make
 CMakeFiles/cube.dir/src/main.c.obj: CMakeFiles/cube.dir/includes_C.rsp
 CMakeFiles/cube.dir/src/main.c.obj: ../src/main.c
 CMakeFiles/cube.dir/src/main.c.obj: CMakeFiles/cube.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/cube.dir/src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/cube.dir/src/main.c.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cube.dir/src/main.c.obj -MF CMakeFiles\cube.dir\src\main.c.obj.d -o CMakeFiles\cube.dir\src\main.c.obj -c C:\root\coding\C\cube\src\main.c
 
 CMakeFiles/cube.dir/src/main.c.i: cmake_force
@@ -87,7 +102,7 @@ CMakeFiles/cube.dir/src/shapes.c.obj: CMakeFiles/cube.dir/flags.make
 CMakeFiles/cube.dir/src/shapes.c.obj: CMakeFiles/cube.dir/includes_C.rsp
 CMakeFiles/cube.dir/src/shapes.c.obj: ../src/shapes.c
 CMakeFiles/cube.dir/src/shapes.c.obj: CMakeFiles/cube.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/cube.dir/src/shapes.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cube.dir/src/shapes.c.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cube.dir/src/shapes.c.obj -MF CMakeFiles\cube.dir\src\shapes.c.obj.d -o CMakeFiles\cube.dir\src\shapes.c.obj -c C:\root\coding\C\cube\src\shapes.c
 
 CMakeFiles/cube.dir/src/shapes.c.i: cmake_force
@@ -102,7 +117,7 @@ CMakeFiles/cube.dir/src/vector.c.obj: CMakeFiles/cube.dir/flags.make
 CMakeFiles/cube.dir/src/vector.c.obj: CMakeFiles/cube.dir/includes_C.rsp
 CMakeFiles/cube.dir/src/vector.c.obj: ../src/vector.c
 CMakeFiles/cube.dir/src/vector.c.obj: CMakeFiles/cube.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/cube.dir/src/vector.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/cube.dir/src/vector.c.obj"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/cube.dir/src/vector.c.obj -MF CMakeFiles\cube.dir\src\vector.c.obj.d -o CMakeFiles\cube.dir\src\vector.c.obj -c C:\root\coding\C\cube\src\vector.c
 
 CMakeFiles/cube.dir/src/vector.c.i: cmake_force
@@ -115,6 +130,7 @@ CMakeFiles/cube.dir/src/vector.c.s: cmake_force
 
 # Object files for target cube
 cube_OBJECTS = \
+"CMakeFiles/cube.dir/src/handlers.c.obj" \
 "CMakeFiles/cube.dir/src/main.c.obj" \
 "CMakeFiles/cube.dir/src/shapes.c.obj" \
 "CMakeFiles/cube.dir/src/vector.c.obj"
@@ -122,6 +138,7 @@ cube_OBJECTS = \
 # External object files for target cube
 cube_EXTERNAL_OBJECTS =
 
+cube.exe: CMakeFiles/cube.dir/src/handlers.c.obj
 cube.exe: CMakeFiles/cube.dir/src/main.c.obj
 cube.exe: CMakeFiles/cube.dir/src/shapes.c.obj
 cube.exe: CMakeFiles/cube.dir/src/vector.c.obj
@@ -129,7 +146,7 @@ cube.exe: CMakeFiles/cube.dir/build.make
 cube.exe: CMakeFiles/cube.dir/linklibs.rsp
 cube.exe: CMakeFiles/cube.dir/objects1.rsp
 cube.exe: CMakeFiles/cube.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C executable cube.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\root\coding\C\cube\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable cube.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\cube.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
