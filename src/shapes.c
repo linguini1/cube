@@ -53,9 +53,6 @@ void colour_transition(RGB *colour, float angle) {
 Cube *make_cube() {
 
     Cube *cube = malloc(sizeof(Cube));
-    cube->vertices = malloc(sizeof(Vec3D) * 8);
-
-    assert(cube->vertices != NULL);
 
     for (int i = 0; i < 8; i++) {
 
@@ -75,6 +72,15 @@ Cube *make_cube() {
     return cube;
 }
 
+void free_cube(Cube *cube) {
+
+    // Free all vectors
+    for (int i = 0; i < 8; i++) {
+        free(&(cube->vertices[i]));
+    }
+    free(cube);
+}
+
 void translate_cube(Cube *cube, Matrix const *matrix) {
 
     for (int i = 0; i < 8; i++){
@@ -88,8 +94,6 @@ Cube *rotate_cube(Cube const *cube, float angle, int axis) {
     // Copy cube with rotation applied
     Cube *new_cube = malloc(sizeof(Cube));
     assert(new_cube != NULL);
-    new_cube->vertices = malloc(sizeof(Vec3D) * 8);
-    assert(new_cube->vertices != NULL);
 
     for (int i = 0; i < 8; i++) {
         Vec3D reference_vec = cube->vertices[i];
@@ -109,6 +113,7 @@ void project_cube(Cube *cube, float distance) {
         // Create matrix & project each vector
         Matrix *proj = make_projection_matrix(distance, vertex->z);
         matrix_multiplication(vertex, proj);
+        free(proj); // Free each projection matrix
     }
 
 }

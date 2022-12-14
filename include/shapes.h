@@ -6,7 +6,7 @@
 
 // Types
 typedef struct cube {
-    Vec3D *vertices;
+    Vec3D vertices[8];
 } Cube;
 
 typedef struct rgb {
@@ -22,6 +22,7 @@ void colour_transition(RGB *colour, float angle);
 
 // Cube functions
 Cube *make_cube();
+void free_cube(Cube *cube);
 void translate_cube(Cube *cube, Matrix const *matrix);
 Cube *rotate_cube(Cube const *cube, float angle, int axis);
 void project_cube(Cube *cube, float distance);

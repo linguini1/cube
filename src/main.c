@@ -6,8 +6,6 @@
 // Window parameters
 const int width = 800;
 const int height = 800;
-const float fov = 0.4f;
-const float aspect_ratio = (float) height / (float) width;
 const char window_name[] = "Geometry Visualizer";
 const float scale = 3.0f;
 
@@ -101,6 +99,8 @@ int main(int argc, char **argv) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    free_cube(cube);
+    free(origin_trans);
 
     return 0;
 }
