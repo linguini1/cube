@@ -42,11 +42,13 @@ int main(int argc, char **argv) {
 
     bool running = true;
     bool perspective = false;
+    bool user_controlled = false;
     SDL_Event event;
 
     // Origin
     float side_len = 50.0f;
     float cam_distance = 2.0f;
+    float speed = 0.012f;
     Vec3D *origin = make_vector(
         (float) width / 6,
         (float) height / 6,
@@ -57,7 +59,9 @@ int main(int argc, char **argv) {
     // Initialize assets
     Cube *cube = make_cube();
     RGB stroke = {255, 255, 255}; // Start as white
-    float angle = 0;
+    float c_angle = 0;
+    float x_angle = 0;
+    float y_angle = 0;
 
     while (running) {
 
@@ -67,7 +71,15 @@ int main(int argc, char **argv) {
             } else if (event.type == SDL_MOUSEBUTTONDOWN) {
                 perspective = !perspective; // Change perspective on click
             } else if (event.type == SDL_MOUSEWHEEL) {
+                // Change camera distance
                 change_cam_distance(&cam_distance, event.wheel.preciseY, 5.0f, 2.0f);
+            } else if (event.type == SDL_KEYDOWN) {
+
+                // Enter user control on C key
+                toggle_control(&user_controlled, event.key.keysym.sym);
+
+                // Rotate cube (y left and right, x up and down)
+                move_cube(event.key.keysym.sym, &x_angle, &y_angle, 2 * speed);
             }
         }
 
@@ -76,18 +88,23 @@ int main(int argc, char **argv) {
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, stroke.r, stroke.g, stroke.b, 255); // Variable stroke
 
-        // Reset angle every period
-        angle += 0.012f;
-        if (2 * PI - 0.025f < angle & angle > 2 * PI + 0.025f) {
-            angle = 0;
+        if (!user_controlled) {
+            c_angle += speed;
+            x_angle += speed;
+            y_angle += speed;
         }
 
+        // Reset angle every period
+        reset_angle(&c_angle);
+        reset_angle(&x_angle);
+        reset_angle(&y_angle);
+
         // Rainbow effect
-        colour_transition(&stroke, angle * 1.0f);
+        colour_transition(&stroke, c_angle);
 
         // Create a local rotated cube
-        Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
-        rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
+        Cube *rotated_cube = rotate_cube(cube, x_angle, 1); // X axis
+        rotated_cube = rotate_cube(rotated_cube, y_angle, 2); // Y axis
 
         // Project
         if (perspective) {

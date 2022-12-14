@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <stdbool.h>
+
+#define PI_TOLERANCE 0.005f
 
 // Helpers
 int *to_binary(int num) {
@@ -47,6 +50,16 @@ void colour_transition(RGB *colour, float angle) {
     colour->g = (int) fabs((double) (255 * g));
     colour->b = (int) fabs((double) (255 * b));
 
+}
+
+void reset_angle(float *angle) {
+
+    bool positive_pi = 2 * PI - PI_TOLERANCE < *angle & *angle > 2 * PI + PI_TOLERANCE;
+    bool negative_pi = -2 * PI + PI_TOLERANCE > *angle & *angle < -2 * PI - PI_TOLERANCE;
+
+    if (positive_pi || negative_pi) {
+        *angle = 0.0f;
+    }
 }
 
 // Cube

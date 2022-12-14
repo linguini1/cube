@@ -19,6 +19,7 @@ typedef struct rgb {
 int *to_binary(int num);
 int to_decimal(int const *binary);
 void colour_transition(RGB *colour, float angle);
+void reset_angle(float *angle);
 
 // Cube functions
 Cube *make_cube();
