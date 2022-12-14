@@ -50,7 +50,7 @@ void colour_transition(RGB *colour, float angle) {
 }
 
 // Cube
-Cube *make_cube(float side_length) {
+Cube *make_cube() {
 
     Cube *cube = malloc(sizeof(Cube));
     cube->vertices = malloc(sizeof(Vec3D) * 8);
@@ -66,9 +66,9 @@ Cube *make_cube(float side_length) {
         // For each bit in binary representation of index, 1 flips the sign, 0 sign stays the same
         // -2b + 1 = 1 when b is 0, -1 when b is 1
         cube->vertices[i] = *make_vector(
-                (float)(bin[0] * -2 + 1) * -0.5f * side_length,
-                (float)(bin[1] * -2 + 1) * 0.5f * side_length,
-                (float)(bin[2] * -2 + 1) * -0.5f * side_length
+                (float)(bin[0] * -2 + 1),
+                (float)(bin[1] * -2 + 1),
+                (float)(bin[2] * -2 + 1)
         );
     }
 
@@ -99,18 +99,16 @@ Cube *rotate_cube(Cube const *cube, float angle, int axis) {
     return new_cube;
 }
 
-void project_cube(Cube *cube, Matrix const *matrix) {
+void project_cube(Cube *cube, float distance) {
 
     for (int i = 0; i < 8; i++){
 
+        // Unpack vertices
         Vec3D *vertex = &(cube->vertices[i]);
-        matrix_multiplication(vertex, matrix);
 
-        if (vertex->w != 0.0f) {
-            vertex->x /= vertex->w;
-            vertex->y /= vertex->w;
-            vertex->z /= vertex->w;
-        }
+        // Create matrix & project each vector
+        Matrix *proj = make_projection_matrix(distance, vertex->z);
+        matrix_multiplication(vertex, proj);
     }
 
 }

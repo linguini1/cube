@@ -21,9 +21,9 @@ int to_decimal(int const *binary);
 void colour_transition(RGB *colour, float angle);
 
 // Cube functions
-Cube *make_cube(float side_length);
+Cube *make_cube();
 void translate_cube(Cube *cube, Matrix const *matrix);
 Cube *rotate_cube(Cube const *cube, float angle, int axis);
-void project_cube(Cube *cube, Matrix const *matrix);
+void project_cube(Cube *cube, float distance);
 void draw_cube(SDL_Renderer *renderer, Cube const *cube);
 void print_cube(Cube const *cube);

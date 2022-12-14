@@ -6,7 +6,7 @@
 // Window parameters
 const int width = 800;
 const int height = 800;
-const float fov = 0.785f;
+const float fov = 0.4f;
 const float aspect_ratio = (float) height / (float) width;
 const char window_name[] = "Geometry Visualizer";
 const float scale = 3.0f;
@@ -45,22 +45,18 @@ int main(int argc, char **argv) {
     SDL_Event event;
 
     // Origin
+    float side_len = 60.0f;
     Vec3D *origin = make_vector(
-        (float) width / (2.0f * scale),
-        (float) height / (2.0f * scale),
-        50.0f
+        (float) width / 6,
+        (float) height / 6,
+        300.0f
     );
-    Matrix *origin_trans = make_translation_matrix(origin, 1);
+    Matrix *origin_trans = make_translation_matrix(origin, (float) side_len);
 
     // Initialize assets
-    float side_length = 40.0f;
-    Cube *cube = make_cube(side_length);
-
+    Cube *cube = make_cube();
     RGB stroke = {255, 255, 255}; // Start as white
     float angle = 0;
-
-    // Projection
-    Matrix *proj = make_projection_matrix(fov, aspect_ratio, 0.0f, 100.0f);
 
     while (running) {
 
@@ -73,27 +69,26 @@ int main(int argc, char **argv) {
         // Clear screen
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black bg
         SDL_RenderClear(renderer);
-
-        // Draw
         SDL_SetRenderDrawColor(renderer, stroke.r, stroke.g, stroke.b, 255); // Variable stroke
-        angle += 0.012f;
 
         // Reset angle every period
+        angle += 0.012f;
         if (2 * PI - 0.025f < angle & angle > 2 * PI + 0.025f) {
             angle = 0;
         }
 
-        colour_transition(&stroke, angle * 1.0f); // Gives rainbow effect
+        // Rainbow effect
+        colour_transition(&stroke, angle * 1.0f);
 
-        // Overwrite cube with rotated cube
+        // Create a local rotated cube
         Cube *rotated_cube = rotate_cube(cube, angle, 1); // X axis
         rotated_cube = rotate_cube(rotated_cube, angle, 2); // Y axis
 
+        // Project
+        project_cube(rotated_cube, 2.5f);
+
         // Translate to center of screen
         translate_cube(rotated_cube, origin_trans);
-
-        // Project
-//        project_cube(rotated_cube, proj);
 
         // Draw
         draw_cube(renderer, rotated_cube);

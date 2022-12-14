@@ -19,7 +19,8 @@ void print_vector(Vec3D const *vector);
 
 // Matrices
 Matrix *make_matrix();
-Matrix *make_projection_matrix(float fov, float aspect, float z_near, float z_far);
+void zero_populate(Matrix *matrix);
+Matrix *make_projection_matrix(float cam_distance, float z);
 Matrix *make_translation_matrix(Vec3D const *translation, float scale);
 void *matrix_multiplication(Vec3D *vector, Matrix const *matrix);
 void print_matrix(Matrix const *matrix);

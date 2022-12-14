@@ -65,21 +65,26 @@ Matrix *make_matrix() {
     return matrix;
 }
 
+void zero_populate(Matrix *matrix) {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            matrix -> cells[i][j] = 0.0f;
+        }
+    }
+}
+
 Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
 
     Matrix *trans_matrix = make_matrix();
+    zero_populate(trans_matrix);
 
     // Populate diagonals with 1s (multiplied by the scale), rest with 0s
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j ++) {
+    trans_matrix->cells[0][0] = scale;
+    trans_matrix->cells[1][1] = scale;
+    trans_matrix->cells[2][2] = scale;
+    trans_matrix->cells[3][3] = scale;
 
-            trans_matrix->cells[i][j] = 0;
-
-            if (i == j) {
-                trans_matrix->cells[i][j] = scale;
-            }
-        }
-    }
+    // Include translation values to be added
     trans_matrix->cells[0][3] = translation->x;
     trans_matrix->cells[1][3] = translation->y;
     trans_matrix->cells[2][3] = translation->z;
@@ -87,25 +92,18 @@ Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
     return trans_matrix;
 }
 
-Matrix *make_projection_matrix(float fov, float aspect, float z_near, float z_far) {
+Matrix *make_projection_matrix(float cam_distance, float z) {
 
     Matrix *proj_matrix = make_matrix();
 
     // Populate with 0s
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            proj_matrix -> cells[i][j] = 0.0f;
-        }
-    }
+    zero_populate(proj_matrix);
 
     // Projection parameters
-    float f = (float) (1.0f / tanf(fov));
-
-    proj_matrix->cells[0][0] = f / aspect;
-    proj_matrix->cells[1][1] = f;
-    proj_matrix->cells[2][2] = (z_far + z_near) / (z_near - z_far);
-    proj_matrix->cells[2][3] = (2.0f * z_far * z_near) / (z_near - z_far);
-    proj_matrix->cells[3][2] = 1.0f;
+    float normalized_z = 1.0f / (cam_distance - z);
+    proj_matrix->cells[0][0] = normalized_z;
+    proj_matrix->cells[1][1] = normalized_z;
+    proj_matrix->cells[3][3] = 1.0f;
 
     return proj_matrix;
 }
