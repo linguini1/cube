@@ -19,7 +19,9 @@ This project requires the SDL2 library.
 ### Rotation
 The linear algebra for the rotations are explained simply in this
 [Stack Overflow post](https://stackoverflow.com/questions/14607640/rotating-a-vector-in-3d-space). See the
-selected answer on 3D rotation.
+selected answer on 3D rotation. I did not implement matrix multiplication for this
+operation, but instead expanded out the resulting equations in code for more efficient
+calculations.
 
 
 ### Creating the Cube
@@ -73,11 +75,17 @@ maps a 0 to +1 and a 1 to -1.
 In code, this becomes:
 ```C
 for (int i = 0; i < 8; i++) {
-    for (int i = 0; i < 8; i++) {
-        int *bin = to_binary(i); // Binary representation
-        cube->vertices[i] = (Vec3D){-2 * bin[0] + 1,
-                                    -2 * bin[1] + 1,
-                                    -2 * bin[2] + 1}; // x, y, z components
+    int *bin = to_binary(i);
+
+    // 0.5 so that cube is one unit side lengths centered at origin
+    // Base coordinates is -, +, -
+    // For each bit in binary representation of index, 1 flips the sign, 0 sign stays the same
+    // -2b + 1 = 1 when b is 0, -1 when b is 1
+    cube->vertices[i] = *make_vector(
+            (float)(bin[0] * -2 + 1),
+            (float)(bin[1] * -2 + 1),
+            (float)(bin[2] * -2 + 1)
+    );
 }
 // 3 in decimal -> 011 in binary.
 // x = -2 * (0) + 1 = 1
@@ -87,9 +95,7 @@ for (int i = 0; i < 8; i++) {
 // The location of vertex 3 is (-1, -1, 1), which aligns with the cube model drawn above.
 ```
 
-This algorithm produces a cube with side length 2 as mentioned above, which is easily rectified by scaling the vector by
-`0.5`. Then multiply by `side_length` as in the previous code, and a cube of the specified side length centered about
-the origin is returned!
+This algorithm produces a cube with side length 2 centered about the origin as mentioned above.
 
 ### Drawing the Cube
 
@@ -197,6 +203,79 @@ void colour_transition(RGB *colour, float angle) {
     colour->r = (int) fabs((double) (255 * r));
     colour->g = (int) fabs((double) (255 * g));
     colour->b = (int) fabs((double) (255 * b));
+
+}
+```
+
+### Translating the cube
+
+Translation of the cube is done using a translation matrix. This works because the
+vector structs in this program contain a fourth entry, `w`, which always stores a 1
+in order to allow for translation.
+```C
+Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
+
+    Matrix *trans_matrix = make_matrix();
+    zero_populate(trans_matrix);
+
+    // Populate diagonals with 1s (multiplied by the scale), rest with 0s
+    trans_matrix->cells[0][0] = scale;
+    trans_matrix->cells[1][1] = scale;
+    trans_matrix->cells[2][2] = scale;
+    trans_matrix->cells[3][3] = scale;
+
+    // Include translation values to be added
+    trans_matrix->cells[0][3] = translation->x;
+    trans_matrix->cells[1][3] = translation->y;
+    trans_matrix->cells[2][3] = translation->z;
+
+    return trans_matrix;
+}
+```
+
+This matrix is used to simultaneously translate the cube to the specified translation
+location, but also scales it by the specified amount (this being the side length of
+the cube).
+
+### Projecting the cube
+
+The program uses weak perspective projection (beside the normal orthographic),
+implemented using the following projection matrix:
+```C
+Matrix *make_projection_matrix(float cam_distance, float z) {
+
+    Matrix *proj_matrix = make_matrix();
+
+    // Populate with 0s
+    zero_populate(proj_matrix);
+
+    // Projection parameters
+    float normalized_z = 1.0f / (cam_distance - z);
+    proj_matrix->cells[0][0] = normalized_z;
+    proj_matrix->cells[1][1] = normalized_z;
+    proj_matrix->cells[3][3] = 1.0f;
+
+    return proj_matrix;
+}
+```
+
+This projection matrix requires the camera's z location, as well as the z coordinate
+of the vector being projected. Hence, the projection matrix must be calculated 8 times,
+once for each vertex of the cube. It is applied like so:
+
+```C
+void project_cube(Cube *cube, float distance) {
+
+    for (int i = 0; i < 8; i++){
+
+        // Unpack vertices
+        Vec3D *vertex = &(cube->vertices[i]);
+
+        // Create matrix & project each vector
+        Matrix *proj = make_projection_matrix(distance, vertex->z);
+        matrix_multiplication(vertex, proj);
+        free(proj); // Free each projection matrix
+    }
 
 }
 ```
