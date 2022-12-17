@@ -181,34 +181,22 @@ look like this:
 
 ![Colour Shift](docs/colour_shift.png)
 
-Of course, RGB values are positive integers, so I had to round the values and also flatten all negatives to 0. 
-In code, the wave calculations look like this:
+Of course, RGB values are positive integers, so I chose to take the absolute value of
+the sine function output. This provided more interesting colours than just rounding up
+to 0.
 
 ```C
-// All colours are 1/3 out of phase
-float r = sinf(angle);
-float g = sinf(angle + 2.0f * PI / 3.0f);
-float b = sinf(angle + + 4.0f * PI / 3.0f);
+void colour_transition(RGB *colour, float angle) {
 
-// Flatten negative values to 0
-if (r < 0) {
-    r = 0;
+    // All colours are 1/3 out of phase
+    float r = sinf(angle);
+    float g = sinf(angle + 2.0f * PI / 3.0f);
+    float b = sinf(angle + + 4.0f * PI / 3.0f);
+
+    // Changing RGB struct
+    colour->r = (int) fabs((double) (255 * r));
+    colour->g = (int) fabs((double) (255 * g));
+    colour->b = (int) fabs((double) (255 * b));
+
 }
-
-if (g < 0) {
-    g = 0;
-}
-
-if (b < 0) {
-    b = 0;
-}
-
-// Changing RGB struct
-colour->r = (int) (255 * r);
-colour->g = (int) (255 * g);
-colour->b = (int) (255 * b);
 ```
-
-In the end, I chose to take the absolute value of the sine
-wave output, because it allowed a larger range of colour to 
-be displayed.
