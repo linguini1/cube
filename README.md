@@ -11,6 +11,17 @@ This repository simply contains a spinning, rainbow cube written entirely in C.
 Currently, the cube is projected orthogonally, as I have not implemented a project besides ignoring the Z
 values of the cube.
 
+## Controls
+- **Mouse click:** The user can click to switch the projection between orthographic and weak
+perspective.
+- **Scroll wheel:** The user can scroll to change the camera location relative to the cube
+in perspective projection mode.
+- **WASD/arrow keys:** The user can use WASD/arrow keys to control the rotation of the cube
+in real-time.
+- **C key:** The `c` key can be used to toggle the user control mode. WASD/arrow keys will enter
+user control mode if the cube is currently computer controlled, but `c` must be used in order to return
+control to the computer.
+
 ## Dependencies
 This project requires the SDL2 library.
 
