@@ -93,8 +93,8 @@ int main(int argc, char **argv) {
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, stroke.r, stroke.g, stroke.b, 255); // Variable stroke
 
+        c_angle += speed;
         if (!user_controlled) {
-            c_angle += speed;
             x_angle += speed;
             y_angle += speed;
         }
