@@ -76,9 +76,9 @@ Cube *make_cube() {
         // For each bit in binary representation of index, 1 flips the sign, 0 sign stays the same
         // -2b + 1 = 1 when b is 0, -1 when b is 1
         cube->vertices[i] = *make_vector(
-                (float)(bin[0] * -2 + 1),
-                (float)(bin[1] * -2 + 1),
-                (float)(bin[2] * -2 + 1)
+                (float)(bin[0] * -2 + 1) * 0.5f,
+                (float)(bin[1] * -2 + 1) * 0.5f,
+                (float)(bin[2] * -2 + 1) * 0.5f
         );
     }
 

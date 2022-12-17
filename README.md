@@ -93,9 +93,9 @@ for (int i = 0; i < 8; i++) {
     // For each bit in binary representation of index, 1 flips the sign, 0 sign stays the same
     // -2b + 1 = 1 when b is 0, -1 when b is 1
     cube->vertices[i] = *make_vector(
-            (float)(bin[0] * -2 + 1),
-            (float)(bin[1] * -2 + 1),
-            (float)(bin[2] * -2 + 1)
+            (float)(bin[0] * -2 + 1) * 0.5f,
+            (float)(bin[1] * -2 + 1) * 0.5f,
+            (float)(bin[2] * -2 + 1) * 0.5f
     );
 }
 // 3 in decimal -> 011 in binary.
@@ -106,7 +106,7 @@ for (int i = 0; i < 8; i++) {
 // The location of vertex 3 is (-1, -1, 1), which aligns with the cube model drawn above.
 ```
 
-This algorithm produces a cube with side length 2 centered about the origin as mentioned above.
+This algorithm produces a cube with side length 1 centered about the origin as mentioned above.
 
 ### Drawing the Cube
 

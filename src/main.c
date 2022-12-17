@@ -46,8 +46,8 @@ int main(int argc, char **argv) {
     SDL_Event event;
 
     // Origin
-    float side_len = 50.0f;
-    float cam_distance = 2.0f;
+    float side_len = 100.0f;
+    float cam_distance = 1.7f;
     float speed = 0.012f;
     Vec3D *origin = make_vector(
         (float) width / 6,
@@ -72,7 +72,12 @@ int main(int argc, char **argv) {
                 perspective = !perspective; // Change perspective on click
             } else if (event.type == SDL_MOUSEWHEEL) {
                 // Change camera distance
-                change_cam_distance(&cam_distance, event.wheel.preciseY, 5.0f, 2.0f);
+                change_cam_distance(
+                    &cam_distance,
+                    event.wheel.preciseY,
+                    5.0f,
+                    1.7f
+                );
             } else if (event.type == SDL_KEYDOWN) {
 
                 // Enter user control on C key
