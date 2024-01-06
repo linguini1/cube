@@ -1,15 +1,15 @@
 // Handles SDL events
-#include "handlers.h"
+#include "../include/handlers.h"
 
-#define TOLERANCE 0.05f
+#define TOLERANCE 0.05
 
-void change_cam_distance(float *cam_distance, float scroll_amount, float max, float min) {
+void change_cam_distance(double *cam_distance, double scroll_amount, double max, double min) {
 
-    float amount = *cam_distance + 0.1f * scroll_amount;
+    double amount = *cam_distance + 0.1 * scroll_amount;
 
     // Only increase if less than max allowed
     // Only decrease if greater than min allowed
-    if (amount < max - TOLERANCE && amount > min + TOLERANCE) {
+    if ((amount < max - TOLERANCE) && (amount > min + TOLERANCE)) {
         *cam_distance = amount;
     } else {
         // If the amount is just under max, set it to the extreme
@@ -19,24 +19,14 @@ void change_cam_distance(float *cam_distance, float scroll_amount, float max, fl
             // Same but for min
             *cam_distance = min;
         }
-
     }
-
-
-
 }
 
 void toggle_control(bool *user_controlled, SDL_KeyCode keycode) {
 
     // Any movement key is pressed
-    bool move = keycode == SDLK_w||
-                keycode == SDLK_a ||
-                keycode == SDLK_d ||
-                keycode == SDLK_s ||
-                keycode == SDLK_UP ||
-                keycode == SDLK_DOWN ||
-                keycode == SDLK_LEFT ||
-                keycode == SDLK_RIGHT;
+    bool move = keycode == SDLK_w || keycode == SDLK_a || keycode == SDLK_d || keycode == SDLK_s ||
+                keycode == SDLK_UP || keycode == SDLK_DOWN || keycode == SDLK_LEFT || keycode == SDLK_RIGHT;
 
     // Toggle on C
     if (keycode == SDLK_c) {
@@ -50,7 +40,7 @@ void toggle_control(bool *user_controlled, SDL_KeyCode keycode) {
     }
 }
 
-void move_cube(SDL_KeyCode keycode, float *x_angle, float *y_angle, float speed) {
+void move_cube(SDL_KeyCode keycode, double *x_angle, double *y_angle, double speed) {
 
     // Move up
     if (keycode == SDLK_w || keycode == SDLK_UP) {
@@ -71,5 +61,4 @@ void move_cube(SDL_KeyCode keycode, float *x_angle, float *y_angle, float speed)
     if (keycode == SDLK_d || keycode == SDLK_RIGHT) {
         *y_angle += speed;
     }
-
 }

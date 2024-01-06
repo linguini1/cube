@@ -1,13 +1,13 @@
 // Vector functionality
-#include "vector.h"
-#include <malloc.h>
+#include "../include/vector.h"
 #include <assert.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <malloc.h>
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // Vectors
-Vec3D *make_vector(float x, float y, float z) {
+Vec3D *make_vector(double x, double y, double z) {
 
     // Allocate on heap
     Vec3D *v = malloc(sizeof(Vec3D));
@@ -17,49 +17,46 @@ Vec3D *make_vector(float x, float y, float z) {
     v->x = x;
     v->y = y;
     v->z = z;
-    v->w = 1.0f;
+    v->w = 1.0;
 
     return v;
-
 }
 
-Vec3D *rotate_vector(Vec3D const *vector, float angle, int axis){
+Vec3D *rotate_vector(Vec3D const *vector, double angle, int axis) {
 
-    assert(0 < axis & axis < 4); // 1-3 are valid (x, y, z) respectively
+    assert((0 < axis) & (axis < 4)); // 1-3 are valid (x, y, z) respectively
 
     // Create new vector
-    Vec3D *new_vec = make_vector(0.0f, 0.0f, 0.0f);
+    Vec3D *new_vec = make_vector(0.0, 0.0, 0.0);
 
     // X axis
     if (axis == 1) {
         new_vec->x = vector->x;
-        new_vec->y = vector->y * cosf(angle) - vector->z * sinf(angle);
-        new_vec->z = vector->y * sinf(angle) + vector->z * cosf(angle);
+        new_vec->y = vector->y * cos(angle) - vector->z * sin(angle);
+        new_vec->z = vector->y * sin(angle) + vector->z * cos(angle);
     }
 
-        // Y axis
+    // Y axis
     else if (axis == 2) {
-        new_vec->x = vector->x * cosf(angle) + vector->z * sinf(angle);
+        new_vec->x = vector->x * cos(angle) + vector->z * sin(angle);
         new_vec->y = vector->y;
-        new_vec->z = vector->x * -sinf(angle) + vector->z * cosf(angle);
+        new_vec->z = vector->x * -sin(angle) + vector->z * cos(angle);
     }
 
-        // Z axis
+    // Z axis
     else {
-        new_vec->x = vector->x * cosf(angle) - vector->y * sinf(angle);
-        new_vec->y = vector->x * sinf(angle) + vector->y * cosf(angle);
+        new_vec->x = vector->x * cos(angle) - vector->y * sin(angle);
+        new_vec->y = vector->x * sin(angle) + vector->y * cos(angle);
         new_vec->z = vector->z;
     }
 
     return new_vec;
 }
 
-void print_vector(Vec3D const *vector) {
-    printf("(%f, %f, %f, %f)\n", vector->x, vector->y, vector->z, vector->w);
-}
+void print_vector(Vec3D const *vector) { printf("(%f, %f, %f, %f)\n", vector->x, vector->y, vector->z, vector->w); }
 
 // Matrices
-Matrix *make_matrix() {
+Matrix *make_matrix(void) {
     Matrix *matrix = malloc(sizeof(Matrix));
     assert(matrix != NULL);
     return matrix;
@@ -68,12 +65,12 @@ Matrix *make_matrix() {
 void zero_populate(Matrix *matrix) {
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            matrix -> cells[i][j] = 0.0f;
+            matrix->cells[i][j] = 0.0;
         }
     }
 }
 
-Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
+Matrix *make_translation_matrix(Vec3D const *translation, double scale) {
 
     Matrix *trans_matrix = make_matrix();
     zero_populate(trans_matrix);
@@ -92,7 +89,7 @@ Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
     return trans_matrix;
 }
 
-Matrix *make_projection_matrix(float cam_distance, float z) {
+Matrix *make_projection_matrix(double cam_distance, double z) {
 
     Matrix *proj_matrix = make_matrix();
 
@@ -100,24 +97,19 @@ Matrix *make_projection_matrix(float cam_distance, float z) {
     zero_populate(proj_matrix);
 
     // Projection parameters
-    float normalized_z = 1.0f / (cam_distance - z);
+    double normalized_z = 1.0 / (cam_distance - z);
     proj_matrix->cells[0][0] = normalized_z;
     proj_matrix->cells[1][1] = normalized_z;
-    proj_matrix->cells[3][3] = 1.0f;
+    proj_matrix->cells[3][3] = 1.0;
 
     return proj_matrix;
 }
 
-void *matrix_multiplication(Vec3D *vector, Matrix const *matrix) {
+void matrix_multiplication(Vec3D *vector, Matrix const *matrix) {
 
     // Unpack vector into array for looping
-    float *vector_fields[4] = {
-        &(vector->x),
-        &(vector->y),
-        &(vector->z),
-        &(vector->w)
-    };
-    float sums[4] = {0.0f};
+    double *vector_fields[4] = {&(vector->x), &(vector->y), &(vector->z), &(vector->w)};
+    double sums[4] = {0.0};
 
     // Multiply
     for (int i = 0; i < 4; i++) {
@@ -134,7 +126,7 @@ void *matrix_multiplication(Vec3D *vector, Matrix const *matrix) {
 
 void print_matrix(Matrix const *matrix) {
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++){
+        for (int j = 0; j < 4; j++) {
             printf("%f, ", matrix->cells[i][j]);
         }
         printf("\n");

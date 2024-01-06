@@ -1,3 +1,0 @@
-C:/root/coding/C/cube/cmake-build-debug/CMakeFiles/cube.dir
-C:/root/coding/C/cube/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/root/coding/C/cube/cmake-build-debug/CMakeFiles/rebuild_cache.dir

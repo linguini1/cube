@@ -1,0 +1,6 @@
+# Build output
+*.o
+cube
+
+# Debug/development
+compile_commands.json

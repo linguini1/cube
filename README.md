@@ -206,9 +206,9 @@ to 0.
 void colour_transition(RGB *colour, float angle) {
 
     // All colours are 1/3 out of phase
-    float r = sinf(angle);
-    float g = sinf(angle + 2.0f * PI / 3.0f);
-    float b = sinf(angle + + 4.0f * PI / 3.0f);
+    float r = sin(angle);
+    float g = sin(angle + 2.0f * PI / 3.0f);
+    float b = sin(angle + + 4.0f * PI / 3.0f);
 
     // Changing RGB struct
     colour->r = (int) fabs((double) (255 * r));
