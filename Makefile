@@ -19,9 +19,21 @@ WARNINGS += -Wdisabled-optimization -Wsuggest-attribute=const
 
 ### COMPILER FLAGS ###
 CFLAGS += $(OPTIMIZATION)
+
+ifeq ($(OS),Windows_NT)
+
+# Windows SDL locations
+SDL_INC = C:/mingw64/SDL2-2.28.5/x86_64-w64-mingw32/include
+SDL_LINK = C:/mingw64/SDL2-2.28.5/x86_64-w64-mingw32/lib
+
+CFLAGS += -Dmain=SDL_main
+CFLAGS += -I$(SDL_INC)
+CFLAGS += -L$(SDL_LINK)
+LINK_FLAGS = -lmingw32 -lSDL2main -lSDL2 -mwindows
+else
 CFLAGS += $(shell sdl2-config --cflags --libs)
-CFLAGS += -lSDL2_ttf
-CFLAGS += -lm
+LINK_FLAGS = -lSDL2_ttf -lm
+endif
 
 ### SOURCE FILES ###
 SRCDIR = src
@@ -32,7 +44,7 @@ OBJ_FILES = $(patsubst %.c,%.o,$(SRC_FILES))
 	$(CC) $(CFLAGS) $(WARNINGS) -o $@ -c $<
 
 all: $(OBJ_FILES)
-	$(CC) $(CFLAGS) $^ -o $(OUT)
+	$(CC) $(CFLAGS) $^ $(LINK_FLAGS) -o $(OUT)
 
 clean:
 	@rm $(OBJ_FILES)

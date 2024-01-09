@@ -10,7 +10,7 @@ const int height = 800;
 const char window_name[] = "Geometry Visualizer";
 const double scale = 3.0f;
 
-int main(void) {
+int main(int argc, char *argv[]) {
 
     // OpenGL params
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
