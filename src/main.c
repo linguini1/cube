@@ -8,7 +8,7 @@
 const int width = 800;
 const int height = 800;
 const char window_name[] = "Geometry Visualizer";
-const double scale = 3.0f;
+const double scale = 3.0;
 
 int main(int argc, char *argv[]) {
 
@@ -39,10 +39,10 @@ int main(int argc, char *argv[]) {
     SDL_Event event;
 
     // Origin
-    double side_len = 100.0f;
-    double cam_distance = 1.7f;
-    double speed = 0.012f;
-    Vec3D *origin = make_vector((double)width / 6, (double)height / 6, 300.0f);
+    double side_len = 100.0;
+    double cam_distance = 1.7;
+    double speed = 0.012;
+    Vec3D *origin = make_vector((double)width / 6, (double)height / 6, 300.0);
     Matrix *origin_trans = make_translation_matrix(origin, (double)side_len);
 
     // Initialize assets
@@ -55,13 +55,13 @@ int main(int argc, char *argv[]) {
     while (running) {
 
         while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
+            if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE)) {
                 running = false;
             } else if (event.type == SDL_MOUSEBUTTONDOWN) {
                 perspective = !perspective; // Change perspective on click
             } else if (event.type == SDL_MOUSEWHEEL) {
                 // Change camera distance
-                change_cam_distance(&cam_distance, event.wheel.preciseY, 5.0f, 1.7f);
+                change_cam_distance(&cam_distance, event.wheel.preciseY, 5.0, 1.7);
             } else if (event.type == SDL_KEYDOWN) {
 
                 // Enter user control on C key
@@ -113,9 +113,9 @@ int main(int argc, char *argv[]) {
     // Release resources
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    SDL_Quit();
     free_cube(cube);
     free(origin_trans);
+    SDL_Quit();
 
     return 0;
 }

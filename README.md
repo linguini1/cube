@@ -2,40 +2,44 @@
 <h1>&nbsp Spinning Cube</h1>
 <h3>Matteo Golin</h3>
 
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
+
 This repository simply contains a spinning, rainbow cube written entirely in C.
 
 Currently, the cube is projected orthogonally, as I have not implemented a project besides ignoring the Z
 values of the cube.
 
 ## Controls
+
 - **Mouse click:** The user can click to switch the projection between orthographic and weak
-perspective.
+  perspective.
 - **Scroll wheel:** The user can scroll to change the camera location relative to the cube
-in perspective projection mode.
+  in perspective projection mode.
 - **WASD/arrow keys:** The user can use WASD/arrow keys to control the rotation of the cube
-in real-time.
+  in real-time.
 - **C key:** The `c` key can be used to toggle the user control mode. WASD/arrow keys will enter
-user control mode if the cube is currently computer controlled, but `c` must be used in order to return
-control to the computer.
+  user control mode if the cube is currently computer controlled, but `c` must be used in order to return
+  control to the computer.
+- **Escape:** Quit the program.
 
 ## Dependencies
+
 This project requires the SDL2 library.
 
 ## Algorithms
 
 ### Rotation
+
 The linear algebra for the rotations are explained simply in this
 [Stack Overflow post](https://stackoverflow.com/questions/14607640/rotating-a-vector-in-3d-space). See the
 selected answer on 3D rotation. I did not implement matrix multiplication for this
 operation, but instead expanded out the resulting equations in code for more efficient
 calculations.
 
-
 ### Creating the Cube
+
 My original idea centered the cube's back-bottom-left corner at the origin, `(0, 0, 0)`.
 
 ![Original Cube](docs/original_cube_idea.png)
@@ -53,8 +57,9 @@ for (int i = 0; i < 8; i++) {
 // Side 3 on the cube is at (x, y, z) of (0, 1, 1). 3 in decimal -> 011 in binary.
 ```
 
-In order to scale the cube to some initial side length greater than 1, I just needed to multiply the bit by a 
+In order to scale the cube to some initial side length greater than 1, I just needed to multiply the bit by a
 `side_length` variable.
+
 ```C
 cube->vertices[i] = (Vec3D){bin[0] * side_length, bin[1] * side_length, bin[2] * side_length};
 ```
@@ -78,12 +83,13 @@ in that same spot. `(-1, 1, -1) --> (-1, 1, 1)`.
 
 This meant a bit switch is equivalent to a sign switch in the centered representation. A 1 in the binary representation
 indicates a negative sign, while a 0 indicates a positive sign. These signs are applied to the base case of `(0, 0, 0)`,
- which is `(-1, 1, -1)` when centered.
+which is `(-1, 1, -1)` when centered.
 
 The equation I derived to multiply the coordinate by the correct sign is `-2b + 1`, where `b` is the bit's value. This
 maps a 0 to +1 and a 1 to -1.
 
 In code, this becomes:
+
 ```C
 for (int i = 0; i < 8; i++) {
     int *bin = to_binary(i);
@@ -129,6 +135,7 @@ So once I bit flip the starting vertex three times, I just had to convert the ve
 decimal in order to get the index at which the vertices were stored.
 
 The code looks like this:
+
 ```C
 for (int i = 0; i < 8; i++) {
     // Convert index to binary
@@ -141,7 +148,7 @@ for (int i = 0; i < 8; i++) {
         int index = to_decimal(bin);
 
         Vec3D next = cube->vertices[index];
-        
+
         // This rendering technique of omitting the z component is orthographic projection
         SDL_RenderDrawLineF(
                 renderer,
@@ -163,6 +170,7 @@ The vertices that I must loop through in my outer loop are vertices 1, 2, 4 and 
 I used the following equation: `2 * i + ((i - 1) * (i - 2)) / 2`, where `i` is the digit between 0 and 3.
 
 The code now looks like:
+
 ```C
 for (int i = 0; i < 4; i++) {
 
@@ -192,7 +200,7 @@ for (int i = 0; i < 4; i++) {
 
 ### Colour Shift
 
-In order to have the cube switch colour, I defined three sine waves for the RGB values of the stroke. These values are 
+In order to have the cube switch colour, I defined three sine waves for the RGB values of the stroke. These values are
 out of sync by 1/3rd period each. Visualized with [Desmos](https://www.desmos.com/calculator/yq9tvhlqnw), the colours
 look like this:
 
@@ -223,6 +231,7 @@ void colour_transition(RGB *colour, float angle) {
 Translation of the cube is done using a translation matrix. This works because the
 vector structs in this program contain a fourth entry, `w`, which always stores a 1
 in order to allow for translation.
+
 ```C
 Matrix *make_translation_matrix(Vec3D const *translation, float scale) {
 
@@ -252,6 +261,7 @@ the cube).
 
 The program uses weak perspective projection (beside the normal orthographic),
 implemented using the following projection matrix:
+
 ```C
 Matrix *make_projection_matrix(float cam_distance, float z) {
 
