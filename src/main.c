@@ -7,7 +7,7 @@
 // Window parameters
 const int width = 800;
 const int height = 800;
-const char window_name[] = "Geometry Visualizer";
+const char window_name[] = "Cube";
 const double scale = 3.0;
 
 int main(int argc, char *argv[]) {

@@ -32,7 +32,7 @@ CFLAGS += -L$(SDL_LINK)
 LINK_FLAGS = -lmingw32 -lSDL2main -lSDL2 -mwindows
 else
 CFLAGS += $(shell sdl2-config --cflags --libs)
-LINK_FLAGS = -lSDL2_ttf -lm
+LINK_FLAGS = -lm
 endif
 
 ### SOURCE FILES ###

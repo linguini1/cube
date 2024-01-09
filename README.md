@@ -24,9 +24,22 @@ values of the cube.
   control to the computer.
 - **Escape:** Quit the program.
 
-## Dependencies
+## Build
 
-This project requires the SDL2 library.
+This project uses SDL2, version 2.28.5.
+
+In order to build this program, run `make all`. Compilation should work out of the box on Linux, assuming you have SDL2
+installed.
+
+On Windows, you may need to provide the paths to your SDL2 `include` and `lib` folders. The `SDL2.dll` file is included
+in this project for you. You can change these two paths using:
+
+```console
+make all SDL_INC=path/to/SDL2-2.28.5/x86_64-w64-mingw32/include SDL_LINK=path/to/SDL2-2.28.5/x86_64-w64-mingw32/lib
+```
+
+It is recommended that you build in the Git bash shell, because `rm` does not work in the traditional Windows command
+prompt (for `make clean`). Other Make rules will work anywhere.
 
 ## Algorithms
 
